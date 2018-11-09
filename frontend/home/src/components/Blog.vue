@@ -1,7 +1,7 @@
 <template>
   <div class="blog">
     <h1>This is a blog page</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ali...</p>
+    <p>로렘 입숨 다람쥐 헌 쳇바퀴에 로렘 윕숨...</p>
   </div>
 </template>
 
