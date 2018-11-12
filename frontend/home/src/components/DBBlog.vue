@@ -4,51 +4,41 @@
 
   
 
-  <!--여기부터 카드 테스트 -->
-   <v-flex xs12>
-        
-  
-        
-          <v-container
-            fluid
-            grid-list-md
-          >
-            <v-layout row wrap>
-              <v-flex xs12 
-                pb-5
-                v-for="post in posts"
-                :key="post.title"
-              >
-                <v-card 
-                 >
-                  <!--<v-img
-                    :src="card.src"
-                    height="200px"
-                  >-->
-                    <v-container
-                    
-                      fill-height
-                      fluid
-                      pa-4
-                    >
-                      <v-layout fill-height>
-                        <v-flex xs12 align-end flexbox>
-                          <span class="headline black--text" v-text="post.title"></span>
-                        </v-flex>
-                      </v-layout>
-                    </v-container>
-                  
-  
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <p class="pr-1" >{{post.createdAt.substring(0,10)}}</p>
-                  </v-card-actions>
-                </v-card>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        
-      </v-flex>
+
+      <!-- 카드 디자인-->
+      <v-container>
+       <v-layout row>
+    <v-flex xs12 >
+    <v-card>
+          <v-list two-line>
+          <template
+           v-for="(post, index) in posts"
+             >
+                   <v-list-tile
+              :key="post.index"
+              avatar
+              ripple
+              @click="move(post.id)"
+            >
+    <v-list-tile-content>
+                <v-list-tile-title pa2>{{ post.title }}</v-list-tile-title>
+              <!--  <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
+                <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>-->
+                <v-list-tile-sub-title class="text-xs-right">{{ post.createdAt.substring(0,10) }}</v-list-tile-sub-title>
+              </v-list-tile-content>
+
+            </v-list-tile>
+            <v-divider
+              
+              v-if="index + 1 < posts.length"
+            ></v-divider>
+          </template>
+        </v-list>
+        </v-card>
+        </v-flex>
+    </v-layout>
+</v-container>
+
 
 </div>
 </template>
@@ -66,6 +56,11 @@ export default {
       errors: []
     }
       
+  },
+  methods: {
+    move: function(target) {
+      this.$router.push({name: 'DBBlogpost', params:{postid:target}})
+    }
   },
 
   // Fetches posts when the component is created.
@@ -101,6 +96,5 @@ export default {
 
 
 </script>
-
 <style scoped>
 </style>

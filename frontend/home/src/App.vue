@@ -44,7 +44,7 @@
       clipped-left
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Title</v-toolbar-title>
+      <v-toolbar-title>jeongkyo.kim</v-toolbar-title>
       <v-spacer></v-spacer>
       <!--<v-toolbar-side-icon @click.stop="drawerRight = !drawerRight"></v-toolbar-side-icon>-->
     </v-toolbar>
@@ -69,13 +69,10 @@
 </template>
 
 <script>
-import About from './components/About.vue'
 
   export default {
   name: 'app',
-  components: {
-    About
-  },
+  
   data: () => ({
     drawer: null,
     drawerRight: false,
