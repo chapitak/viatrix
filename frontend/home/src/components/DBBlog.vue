@@ -1,6 +1,6 @@
 <template>
   <div class="dbblog">
-    <h1 class="text-md-center">This is a DBBlog page</h1>
+    <h1 class="text-md-center">Blog</h1>
 
   
 
