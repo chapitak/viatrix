@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-//import Skills from './components/Skills.vue'
 import About from './components/About.vue'
 import Blog from './components/Blog.vue'
 import DBBlog from './components/DBBlog.vue'
 import DBBlogPost from './components/DBBlogPost.vue'
+import EditPost from './components/EditPost.vue'
 
 Vue.use(Router)
 
@@ -29,6 +29,11 @@ export default new Router({
       path: '/DBBlog/:postid',
       name: 'DBBlogpost',
       component: DBBlogPost
+    },
+    {
+      path: '/EditPost',
+      name: 'EditPost',
+      component: EditPost
     }
   ]
 })

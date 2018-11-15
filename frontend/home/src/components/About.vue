@@ -4,7 +4,7 @@
     <br>
     <h1>Fix Kim</h1>
     <br>
-    <v-icon small>account_circle</v-icon> 커피 쏟기의 귀재 (빌드테스트)
+    <v-icon small>account_circle</v-icon> 커피 쏟기의 귀재
     <br>
     <v-icon small>my_location</v-icon> 서울특별시 동대문구
     <br>
