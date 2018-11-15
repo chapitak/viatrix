@@ -44,7 +44,11 @@
       clipped-left
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>jeongkyo.kim</v-toolbar-title>
+      <v-toolbar-title>
+          <v-toolbar-items>
+              <v-btn large flat @click="move('/')">jeongkyo.kim</v-btn>
+          </v-toolbar-items>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <!--<v-toolbar-side-icon @click.stop="drawerRight = !drawerRight"></v-toolbar-side-icon>-->
     </v-toolbar>

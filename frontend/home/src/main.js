@@ -6,9 +6,12 @@ import axios from 'axios'
 import VueSimplemde from 'vue-simplemde'
 import 'simplemde/dist/simplemde.min.css'
 
+
+
 Vue.use(VueSimplemde)
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
+
 
 new Vue({
   router,
