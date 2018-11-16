@@ -1,9 +1,15 @@
 <template>
-  <div class="dbblogpost markdown-body" v-html = "post.text">
-  
+  <div class="dbblogpost">
+    
+    <div class="markdown-body" >
+      <h1>{{post.title}}</h1>
+      <span style="float:right">{{ post.createdAt.substring(0,10) }}</span>
+      <div v-html = "post.text">
+      </div>
+    
   <!--<div class="postContent" v-html = "post.text"> </div>-->
-  
-</div>
+    </div>
+  </div>
 
 </template>
 
