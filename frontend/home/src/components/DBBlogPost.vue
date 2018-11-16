@@ -27,6 +27,7 @@ export default {
       errors: []
     }
   },
+
   // Fetches posts when the component is created.
   created() {
 
@@ -36,39 +37,68 @@ export default {
      this.post = response.data
 
      var md = MarkDownIt()
-     this.post.text = md.render(response.data.text)
-
-    //disqus 추가
-      /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-    
-    var disqus_config = function () {
-    this.page.url = "http://jeongkyo.kim/#/DBBlog/5bee1ad493f3cd542cda23ad";  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = this.post.id; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://jeongkyo-kim-1.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-
-
-      
+     this.post.text = md.render(response.data.text)      
     })
     .catch(e => {
       this.errors.push(e)
-    })
+    })               
+    
+  }, 
+  mounted() {
+     if (window.DISQUS) {
+        this.reset(window.DISQUS)
+        return
+      }
+    this.init()
+  
+
+  },
+  methods: {
+    reset(dsq) {
+        const self = this
+        dsq.reset({
+          reload: true,
+          config: function () {
+            self.setBaseConfig(this)
+          }
+        })
+    },
+    init() {
+      const self = this
+      window.disqus_config = function () {
+        self.setBaseConfig(this)
+    }
+    //setTimeout(() => {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://jeongkyo-kim-1.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+         (d.head || d.body).appendChild(s);
+    //    }, 0)
+    /*var d = document, s = d.createElement('script');
+    s.src = 'https://jeongkyo-kim-1.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);*/
+    
+
+    },
+    setBaseConfig(disqusConfig){
+      disqusConfig.page.url = window.location.origin + "/" + this.$route.path;  // Replace PAGE_URL with your page's canonical URL variable
+      disqusConfig.page.identifier = this.$route.params.postid;
+      disqusConfig.callbacks.onReady = [() => {
+          this.$emit('ready')
+        }]
+        
+        disqusConfig.callbacks.onNewComment = [(comment) => {
+          this.$emit('new-comment', comment)
+        }]
+      console.log(s)
+    }
     
 
 
   }
   
 }
-
-
 
 </script>
 
