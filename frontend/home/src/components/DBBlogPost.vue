@@ -6,10 +6,8 @@
       <span style="float:right">{{ post.createdAt.substring(0,10) }}</span>
       <div v-html = "post.text">
       </div>
-    </div>
-    <div id="disqus_thread"></div>
-
-                                
+      <div id="disqus_thread"></div>
+    </div>               
   </div>
 
 </template>
