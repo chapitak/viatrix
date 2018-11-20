@@ -7,13 +7,7 @@
       <div v-html = "post.text">
       </div>
     </div>
-<<<<<<< HEAD
     <div id="disqus_thread"></div>        
-=======
-    <div id="disqus_thread"></div>
-
-                                
->>>>>>> parent of 0e0ee6f4... [UPDATE] modifying disqus location
   </div>
 
 </template>
