@@ -7,9 +7,7 @@
       <div v-html = "post.text">
       </div>
     </div>
-    <div id="disqus_thread"></div>
-
-                                
+    <div id="disqus_thread"></div>        
   </div>
 
 </template>
