@@ -89,7 +89,9 @@
       this.$router.push(target)
     },
     login: function() {
-          this.$http.get(`http://54.180.32.24:1337/connect/google`)
+          this.$http.get(`http://54.180.32.24:1337/connect/google`
+    
+    )
     .then(response => {
       // JSON responses are automatically parsed.
       console.log(response.data)
@@ -98,7 +100,7 @@
       
     })
     .catch(e => {
-      this.errors.push(e)
+    
     })
     }
   },
