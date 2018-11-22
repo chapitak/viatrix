@@ -5,6 +5,7 @@ import Blog from './components/Blog.vue'
 import DBBlog from './components/DBBlog.vue'
 import DBBlogPost from './components/DBBlogPost.vue'
 import EditPost from './components/EditPost.vue'
+import SignIn from './components/SignIn.vue'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/EditPost',
       name: 'EditPost',
       component: EditPost
+    },
+    {
+      path: '/SignIn',
+      name: 'SignIn',
+      component: SignIn
     }
   ]
 })

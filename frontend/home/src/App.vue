@@ -94,7 +94,7 @@
     )
     .then(response => {
       // JSON responses are automatically parsed.
-      console.log(response.data)
+      
       //this.posts = response.data
       
       
