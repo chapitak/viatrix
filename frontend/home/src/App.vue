@@ -50,7 +50,7 @@
           </v-toolbar-items>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn small flat @click="login()">Sign In</v-btn>
+      <v-btn small flat @click="login()" target="_blank">Sign In</v-btn>
       <!--<v-toolbar-side-icon @click.stop="drawerRight = !drawerRight"></v-toolbar-side-icon>-->
     </v-toolbar>
 
@@ -92,16 +92,6 @@
           this.$http.get(`http://54.180.32.24:1337/connect/google`
     
     )
-    .then(response => {
-      // JSON responses are automatically parsed.
-      
-      //this.posts = response.data
-      
-      
-    })
-    .catch(e => {
-    
-    })
     }
   },
   props: {

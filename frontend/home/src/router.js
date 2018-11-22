@@ -6,6 +6,7 @@ import DBBlog from './components/DBBlog.vue'
 import DBBlogPost from './components/DBBlogPost.vue'
 import EditPost from './components/EditPost.vue'
 import SignIn from './components/SignIn.vue'
+import SignInProcess from './components/SignInProcess.vue'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/SignIn',
       name: 'SignIn',
       component: SignIn
+    },
+    {
+      path: '/SignInProcess',
+      name: 'SignInProcess',
+      component: SignInProcess
     }
   ]
 })
