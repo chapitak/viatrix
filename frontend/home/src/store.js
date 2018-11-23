@@ -6,17 +6,17 @@ Vue.use(Vuex)
 
 const resourceHost = 'http://localhost:3000'
 
-const enhanceAccessToeken = () => {
-  const {accessToken} = localStorage
+/*const enhanceAccessToeken = () => {
+  const {accessToken} = localStorage.accessToken
   if (!accessToken) return
   axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 }
-enhanceAccessToeken() 
+enhanceAccessToeken() */
 
 export default new Vuex.Store({
   state: {
-    accessToken: null
-  },
+    accessToken: localStorage.accessToken
+    },
   getters: {
 
   },
@@ -28,6 +28,7 @@ export default new Vuex.Store({
     },
     LOGOUT (state) {
       state.accessToken = null
+      localStorage.accessToken = null
     }
   },
   actions: {

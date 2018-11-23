@@ -10,10 +10,19 @@ import 'es6-promise/auto'
 import 'simplemde/dist/simplemde.min.css'
 
 
+
 Vue.use(Vuex)
 Vue.use(VueSimplemde)
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
+
+//Auth Handling
+const token = localStorage.accessToken 
+if (token) {
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
+}
+
+
 
 new Vue({
   router,
