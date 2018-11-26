@@ -53,15 +53,15 @@
       <v-btn v-if="this.user == null" small flat @click="move('/SignIn')" target="_blank">Sign In</v-btn>
       <!--<span v-else>{{this.user.username}}</span>-->
 
-       <v-flex v-else xs12 sm4>
+      <v-flex v-else xs12 sm4>
           <v-overflow-btn
             
-            :items="dropdown_icon"
+            :items="dropdown_user"
             v-bind:label="this.user.username"
             segmented
             target="#dropdown-example"
           ></v-overflow-btn>
-        </v-flex>
+       </v-flex>
 
     </v-toolbar>
 
@@ -86,6 +86,7 @@
 
 <script>
 
+
   export default {
   name: 'app',
   
@@ -94,7 +95,13 @@
     drawerRight: false,
     right: false,
     left: false,
-    user: []
+    user: [],
+    dropdown_user: [
+        { text: 'Sign Out', callback: () => 
+        localStorage.accessToken = null 
+        //this.$router.push('/') 
+        }
+      ],
   }),
   methods: {
     move: function(target) {

@@ -14,6 +14,7 @@ import 'simplemde/dist/simplemde.min.css'
 Vue.use(Vuex)
 Vue.use(VueSimplemde)
 Vue.prototype.$http = axios
+
 Vue.config.productionTip = false
 
 //Auth Handling
