@@ -19,7 +19,7 @@ Vue.config.productionTip = false
 //Auth Handling
 const token = localStorage.accessToken 
 if (token) {
-  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = 'Bearer ' + token
 }
 
 

@@ -4,15 +4,15 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const resourceHost = 'http://localhost:3000'
 
-/*const enhanceAccessToeken = () => {
+
+const enhanceAccessToeken = () => {
   const {accessToken} = localStorage.accessToken
   if (!accessToken) return
   axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 }
-enhanceAccessToeken() */
-
+enhanceAccessToeken() 
+//localStorage에 해서.. state를 제외한 나머지 항목이 전부 필요없는게 아닐까 싶다. 차차생각해보자 어떻게 처리할지... 
 export default new Vuex.Store({
   state: {
     accessToken: localStorage.accessToken

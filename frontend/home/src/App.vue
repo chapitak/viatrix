@@ -50,8 +50,19 @@
           </v-toolbar-items>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn small flat @click="login()" target="_blank">Sign In</v-btn>
-      <!--<v-toolbar-side-icon @click.stop="drawerRight = !drawerRight"></v-toolbar-side-icon>-->
+      <v-btn v-if="this.user == null" small flat @click="move('/SignIn')" target="_blank">Sign In</v-btn>
+      <!--<span v-else>{{this.user.username}}</span>-->
+
+       <v-flex v-else xs12 sm4>
+          <v-overflow-btn
+            
+            :items="dropdown_icon"
+            v-bind:label="this.user.username"
+            segmented
+            target="#dropdown-example"
+          ></v-overflow-btn>
+        </v-flex>
+
     </v-toolbar>
 
       <v-content>
@@ -82,20 +93,27 @@
     drawer: null,
     drawerRight: false,
     right: false,
-    left: false
+    left: false,
+    user: []
   }),
   methods: {
     move: function(target) {
       this.$router.push(target)
-    },
-    login: function() {
-          this.$http.get(`http://54.180.32.24:1337/connect/google`
-    
-    )
     }
   },
   props: {
     source: String
+  },
+  mounted() {
+    this.$http.get(`http://54.180.32.24:1337/users/me`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+     this.user = response.data
+     console.log(this.user.username)
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })  
   }
 }
 </script>
