@@ -28,16 +28,35 @@
       this.registerUrl = "http://jeongkyo.kim:1337/auth/google/callback" + this.registerUrl 
       
       //AJAX 를 활용한 http request
-      const Http = new XMLHttpRequest();
+      
+      
+      /*const Http = new XMLHttpRequest();
       const url= this.registerUrl;
-      Http.open("GET", url);
+      Http.open("GET", url, false);
       Http.send();
       Http.onreadystatechange=(e)=>{
-        this.response = JSON.parse(Http.responseText)
+      this.response = JSON.parse(Http.responseText)
       
       localStorage.accessToken = this.response.jwt
-      }
+      }*/
+  
+  
+      const url= this.registerUrl;
+      var req = new XMLHttpRequest();
+      req.open('GET', url, false);
+      req.send(null);
+      if(req.status == 200)
+        {
+          this.response = JSON.parse(req.responseText)
+      
+          localStorage.accessToken = this.response.jwt
+        }
 
+
+       opener.location.reload()
+       self.close()
+
+      
 
 
       //this.$store.dispatch('LOGIN', this.token)
@@ -52,8 +71,7 @@
 
        //this.$destroy()
        //this.loginWindow.close();
-       self.close()
-
+        
     }
   }
 

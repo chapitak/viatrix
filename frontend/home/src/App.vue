@@ -50,9 +50,9 @@
           </v-toolbar-items>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-if="this.user == null" small flat @click="move('/SignIn')" target="_blank">Sign In</v-btn>
-      <!--<span v-else>{{this.user.username}}</span>-->
-
+      <v-btn v-if="this.user.username == null" small flat @click="move('/SignIn')" target="_blank">Sign In</v-btn>
+      <span v-else @click="logout()">{{this.user.username}}</span>
+      <!--
       <v-flex v-else xs12 sm4>
           <v-overflow-btn
             
@@ -62,7 +62,7 @@
             target="#dropdown-example"
           ></v-overflow-btn>
        </v-flex>
-
+      -->
     </v-toolbar>
 
       <v-content>
@@ -98,29 +98,39 @@
     user: [],
     dropdown_user: [
         { text: 'Sign Out', callback: () => 
-        localStorage.accessToken = null 
-        //this.$router.push('/') 
+        //localStorage.accessToken = null 
+        this.$router.push('/') 
         }
       ],
   }),
   methods: {
     move: function(target) {
       this.$router.push(target)
+    },
+    logout() {
+      localStorage.accessToken = null 
+      this.user=[]
+      this.$router.push('/') 
     }
   },
   props: {
     source: String
   },
   mounted() {
-    this.$http.get(`http://54.180.32.24:1337/users/me`)
-    .then(response => {
-      // JSON responses are automatically parsed.
-     this.user = response.data
-     console.log(this.user.username)
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })  
+    if(localStorage != null)
+      {
+        this.$http.get(`http://54.180.32.24:1337/users/me`)
+        .then(response => {
+          // JSON responses are automatically parsed.
+        this.user = response.data
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })  
+      }
+    else {
+      this.user = []
+    }
   }
 }
 </script>
