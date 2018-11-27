@@ -6,8 +6,20 @@
       <span style="float:right">{{ post.createdAt.substring(0,10) }}</span>
       <div v-html = "post.text">
       </div>
+      <div id="bpcomment">
+      <v-form v-model="valid">
+        <!-- username 들어가야되는데 prop으로 받아오겠지? --> 
+        <v-textarea
+          solo
+          name="Conent Textarea"
+          label="Conent Textarea"
+        ></v-textarea>
+      </v-form>
+    </div>     
+
+
     </div>
-    <div id="disqus_thread"></div>        
+    
   </div>
 
 </template>
@@ -41,61 +53,7 @@ export default {
       this.errors.push(e)
     })               
     
-  }, 
-  mounted() {
-     if (window.DISQUS) {
-        this.reset(window.DISQUS)
-        return
-      }
-    this.init()
-  
-
-  },
-  methods: {
-    reset(dsq) {
-        const self = this
-        dsq.reset({
-          reload: true,
-          config: function () {
-            self.setBaseConfig(this)
-          }
-        })
-    },
-    init() {
-      const self = this
-      window.disqus_config = function () {
-        self.setBaseConfig(this)
-    }
-    //setTimeout(() => {
-          var d = document, s = d.createElement('script');
-          s.src = 'https://jeongkyo-kim-1.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', +new Date());
-         (d.head || d.body).appendChild(s);
-    //    }, 0)
-    /*var d = document, s = d.createElement('script');
-    s.src = 'https://jeongkyo-kim-1.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);*/
-    
-
-    },
-    setBaseConfig(disqusConfig){
-      disqusConfig.page.url = window.location.origin + "/" + this.$route.path;  // Replace PAGE_URL with your page's canonical URL variable
-      disqusConfig.page.identifier = this.$route.params.postid;
-      disqusConfig.callbacks.onReady = [() => {
-          this.$emit('ready')
-        }]
-        
-        disqusConfig.callbacks.onNewComment = [(comment) => {
-          this.$emit('new-comment', comment)
-        }]
-      console.log(s)
-    }
-    
-
-
   }
-  
 }
 
 </script>

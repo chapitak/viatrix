@@ -117,7 +117,7 @@
     source: String
   },
   mounted() {
-    if(localStorage != null)
+    if(localStorage.accessToken != null)
       {
         this.$http.get(`http://54.180.32.24:1337/users/me`)
         .then(response => {
@@ -126,6 +126,7 @@
         })
         .catch(e => {
           this.errors.push(e)
+          this.$router.push('/SignIn') 
         })  
       }
     else {
