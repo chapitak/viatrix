@@ -12,7 +12,7 @@
         <v-textarea
           solo
           name="Conent Textarea"
-          label="Conent Textarea"
+          label="코멘트를 작성해주세요"
         ></v-textarea>
       </v-form>
     </div>     
