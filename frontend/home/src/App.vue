@@ -123,6 +123,8 @@
         .then(response => {
           // JSON responses are automatically parsed.
         this.user = response.data
+        localStorage.username = this.user.username
+        localStorage.id = this.user._id
         })
         .catch(e => {
           this.errors.push(e)
@@ -131,6 +133,9 @@
       }
     else {
       this.user = []
+      localStorage.username = ''
+      localStorage._id= ''
+
     }
   }
 }

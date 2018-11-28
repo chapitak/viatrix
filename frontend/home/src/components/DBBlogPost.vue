@@ -6,18 +6,9 @@
       <span style="float:right">{{ post.createdAt.substring(0,10) }}</span>
       <div v-html = "post.text">
       </div>
-      <div id="bpcomment">
-      <v-form v-model="valid">
-        <!-- username 들어가야되는데 prop으로 받아오겠지? --> 
-        <v-textarea
-          solo
-          name="Conent Textarea"
-          label="코멘트를 작성해주세요"
-        ></v-textarea>
-      </v-form>
-    </div>     
+      
 
-
+      <Comment :props_post_id="post.id"/>
     </div>
     
   </div>
@@ -28,9 +19,13 @@
 
 <script>
 import MarkDownIt from 'markdown-it'
+import Comment from './Comment.vue'
 
 export default {
   name: 'DBBlogPost',
+  components: {
+    Comment
+  },
   data() {
     return {
       post: [],

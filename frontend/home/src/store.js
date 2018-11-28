@@ -15,7 +15,8 @@ enhanceAccessToeken()
 //localStorage에 해서.. state를 제외한 나머지 항목이 전부 필요없는게 아닐까 싶다. 차차생각해보자 어떻게 처리할지... 
 export default new Vuex.Store({
   state: {
-    accessToken: localStorage.accessToken
+    accessToken: localStorage.accessToken,
+    user: localStorage.user
     },
   getters: {
 
