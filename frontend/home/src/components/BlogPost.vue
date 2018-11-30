@@ -1,7 +1,7 @@
 <template>
   <div class="blogpost">
   
-    <div v-html = "article">
+    <div  class="markdown-body" v-html = "article">
     
     </div>
   </div>
@@ -10,6 +10,8 @@
 
 
 <script>
+import MarkDownIt from 'markdown-it'
+
 export default {
   name: 'BlogPost',
   data() {
@@ -25,29 +27,20 @@ export default {
     var htmlDocUri = 
         '/blog_contents/'
         + this.year + '/'
-        + this.month + '/'
+        + this.month + '/'  
         + this.day + '/'
         + this.title + '.html'
 
-    /*var xhr = new XMLHttpRequest();
-    xhr.open("GET", htmlDocUri, true);
-    xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-        var str = xhr.responseText.substring(0,4);
-        if(str == "<!DO" || str == "<hea") {
-        window.location.href = "/404";
-        } else {
-        this.article = xhr.responseText;
-        }
-    }
-    }
-    xhr.send();*/
+
     
     this.$http.get(htmlDocUri)
     .then(response => {
       // JSON responses are automatically parsed.
-     this.article = response.data
+     //this.article = response.data
 
+     var md = MarkDownIt({
+    html: true}) 
+     this.article = md.render(response.data)    
     })
     .catch(e => {
       window.location.href = "/404";
@@ -58,4 +51,19 @@ export default {
 </script>
 
 <style scoped>
+  @import "../assets/markdown.css";
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+
 </style>

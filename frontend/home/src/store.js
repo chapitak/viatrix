@@ -16,7 +16,7 @@ enhanceAccessToeken()
 export default new Vuex.Store({
   state: {
     accessToken: localStorage.accessToken,
-    user: localStorage.user
+    
     },
   getters: {
 

@@ -108,7 +108,7 @@
       this.$router.push(target)
     },
     logout() {
-      localStorage.accessToken = null 
+      localStorage.accessToken = '' 
       this.user=[]
       this.$router.push('/') 
     }
@@ -123,7 +123,7 @@
         .then(response => {
           // JSON responses are automatically parsed.
         this.user = response.data
-        localStorage.username = this.user.username
+        
         localStorage.id = this.user._id
         })
         .catch(e => {
@@ -133,12 +133,14 @@
       }
     else {
       this.user = []
-      localStorage.username = ''
-      localStorage._id= ''
-
+      localStorage.id = null
     }
   }
 }
 </script>
 
 
+<style>
+
+
+</style>

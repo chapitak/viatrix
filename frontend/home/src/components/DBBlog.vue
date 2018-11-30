@@ -8,8 +8,8 @@
       <!-- 카드 디자인-->
       <v-container>
        <v-layout row>
-    <v-flex xs12 >
-    <v-card>
+        <v-flex xs12 >
+        <v-card>
           <v-list two-line>
           <template
            v-for="(post, index) in posts"
@@ -20,7 +20,7 @@
               ripple
               @click="move(post.id)"
             >
-    <v-list-tile-content>
+              <v-list-tile-content>
                 <v-list-tile-title pa2>{{ post.title }}</v-list-tile-title>
               <!--  <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
                 <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>-->

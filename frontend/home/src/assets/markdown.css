@@ -588,7 +588,7 @@
 .markdown-body img {
   max-width: 100%;
   box-sizing: content-box;
-  background-color: #fff;
+  /*background-color: #fff;*/
 }
 
 .markdown-body img[align=right] {
@@ -692,4 +692,11 @@
 
 .markdown-body hr {
   border-bottom-color: #eee;
+}
+
+.markdown-body code {
+  background-color: #f5f5f5;
+  color: #24292e;
+  box-shadow: none;
+  font-weight: normal;
 }
