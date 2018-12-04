@@ -50,8 +50,8 @@
           </v-toolbar-items>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-if="this.user.username == null" small flat @click="move('/SignIn')" target="_blank">Sign In</v-btn>
-      <span v-else @click="logout()">{{this.user.username}}</span>
+      <v-btn v-if="this.$store.state.user.username == null" small flat @click="move('/SignIn')" target="_blank">Sign In</v-btn>
+      <span v-else @click="logout()">{{this.$store.state.user.username}}</span>
       <!--
       <v-flex v-else xs12 sm4>
           <v-overflow-btn
@@ -95,7 +95,6 @@
     drawerRight: false,
     right: false,
     left: false,
-    user: [],
     dropdown_user: [
         { text: 'Sign Out', callback: () => 
         //localStorage.accessToken = null 
@@ -109,7 +108,7 @@
     },
     logout() {
       localStorage.accessToken = '' 
-      this.user=[]
+      this.$store.state.user=[]
       this.$router.push('/') 
     }
   },
@@ -122,18 +121,21 @@
         this.$http.get(`http://54.180.32.24:1337/users/me`)
         .then(response => {
           // JSON responses are automatically parsed.
-        this.user = response.data
+        this.$store.state.user = response.data
+        this.$store.state.user = response.data
         
-        localStorage.id = this.user._id
+        localStorage.id = this.this.$store.state.user._id
         })
-        .catch(e => {
-          this.errors.push(e)
+        .catch(error => {
+           
+          console.log('An error occurred:', error);
           this.$router.push('/SignIn') 
         })  
       }
     else {
-      this.user = []
+      
       localStorage.id = null
+      this.$store.state.user = null
     }
   }
 }

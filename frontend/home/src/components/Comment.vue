@@ -1,17 +1,20 @@
 <template>
   <div class="Comment">
+    <ul>
+        <li v-for="(data, index) in comments" :key='index'>{{index}}. {{data.comment}}</li>
+      </ul>
     <div id="write-comment">
         <!--<v-form v-model="valid">-->
-        <v-form v-model="comment, valid">
+        <v-form >
             <!-- username 들어가야되는데 prop으로 받아오겠지? --> 
             <v-textarea
             solo
             name="Conent Textarea"
             label="코멘트를 작성해주세요"
-            
-            ></v-textarea>
+            v-model="comment"
+            >{{comment}}</v-textarea>
             <v-btn 
-            :disabled="!valid"
+            
             @click="sendComment()"
             style="float:right"
             class="pa-0 ma-0"
@@ -33,7 +36,7 @@
     data() {
       return {
           comment: '',
-          comments: [],
+          comments: []
         }
     },
     
@@ -43,9 +46,8 @@
 
         this.$http.post(`http://jeongkyo.kim:1337/comments/`, {
             post_id: this.props_post_id,
-            register_id: localstorage.id,
-            content: this.comment,
-            reg_dt: currentTime
+            register_id: this.$store.state.user._id,
+            content: this.comment
         })
         .then(response => {
             // Handle success.
