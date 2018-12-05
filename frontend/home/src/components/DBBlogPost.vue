@@ -8,9 +8,9 @@
       </div>
       
 
-      <Comment :props_post_id="post.id"/>
+      
     </div>
-    
+    <Comment :props_post_id="post.id"/>
   </div>
 
 </template>

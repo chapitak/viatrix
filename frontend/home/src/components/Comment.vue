@@ -1,8 +1,35 @@
 <template>
   <div class="Comment">
-    <ul>
-        <li v-for="(data, index) in comments" :key='index'>{{index}}. {{data.comment}}</li>
-      </ul>
+    <v-divider dark></v-divider>
+    <div id="read-comment">
+        <v-list style="background:#fafafa">
+            <template
+            v-for="(comment, index) in comments"
+                >
+            <v-list-tile
+              :key="comment.index"
+            <v-list-tile-content>
+                <v-list-tile-sub-title>{{comment.username}}</v-list-tile-sub-title>
+                <v-list-tile-title pa2>{{ comment.comment }}</v-list-tile-title>
+              <!--  <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
+                <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>-->
+                
+            </v-list-tile-content>
+
+
+            
+                <!--<div
+                :key="comment.index"
+            >   {{comment.comment}}
+                </div>-->
+            </v-list-tile>
+            <v-divider
+                v-if="index+1 < comments.length"
+            ></v-divider>
+            </template>
+        </v-list>
+
+    </div>
     <div id="write-comment">
         <!--<v-form v-model="valid">-->
         <v-form >
@@ -33,16 +60,32 @@
   export default {
     name: 'Comment',
     props: ['props_post_id'],
-    data() {
+    data() {    
       return {
           comment: '',
           comments: []
         }
     },
+    /*mounted(): {
+        this.$http.get(`http://54.180.32.24:1337/comments`, {
+        params: {
+            _sort: 'createdAt:desc' // Generates http://localhost:1337/posts?_sort=createdAt:desc
+        }
+        })
+        .then(response => {
+            // JSON responses are automatically parsed.
+            
+            this.posts = response.data
+            
+            
+        })
+        .catch(e => {
+            this.errors.push(e)
+        })
+    },*/
     
     methods: {
         sendComment() {
-        var currentTime = new Date().toLocaleString();
 
         this.$http.post(`http://jeongkyo.kim:1337/comments/`, {
             post_id: this.props_post_id,
@@ -61,7 +104,7 @@
             console.log('An error occurred:', error);
         });
 
-        this.comments.push({comment: this.comment});
+        this.comments.push({comment: this.comment, username: this.$store.state.user.username });
         this.comment = '';
 
         }
@@ -72,5 +115,17 @@
 </script>
 
 <style  scoped>
+.Comment {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+}
 
+@media (max-width: 767px) {
+    .Comment {
+        padding: 15px;
+    }
+}
 </style>
