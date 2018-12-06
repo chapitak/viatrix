@@ -66,23 +66,35 @@
           comments: []
         }
     },
-    /*mounted(): {
-        this.$http.get(`http://54.180.32.24:1337/comments`, {
-        params: {
-            _sort: 'createdAt:desc' // Generates http://localhost:1337/posts?_sort=createdAt:desc
-        }
-        })
-        .then(response => {
-            // JSON responses are automatically parsed.
+    mounted() {
+        var self = this
+        this.$http({
+            url: 'http://54.180.32.24:1337/graphql',
+            method: 'post',
+            data: {
+                query: `
+                query {
+                    comments(where: {post_id: "`+self.props_post_id+`"}) {
+                        content,
+                        _id,
+                        post_id, 
+                        user {
+                        username
+                    },
+                    
+                    }
+                    } 
+
+                `
+            }
+            }).then((result) => {
             
-            this.posts = response.data
-            
-            
-        })
-        .catch(e => {
-            this.errors.push(e)
-        })
-    },*/
+            this.comments = result.data
+            //this.comments.push({comment: result.data.comments[0], username: this.$store.state.user.username });
+            console.log(this.comments)
+            });
+
+    },
     
     methods: {
         sendComment() {
@@ -90,7 +102,9 @@
         this.$http.post(`http://jeongkyo.kim:1337/comments/`, {
             post_id: this.props_post_id,
             register_id: this.$store.state.user._id,
-            content: this.comment
+            content: this.comment,
+            Post: this.props_post_id,
+            User: this.$store.state.user._id
         })
         .then(response => {
             // Handle success.
