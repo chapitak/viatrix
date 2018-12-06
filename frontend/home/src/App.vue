@@ -50,7 +50,7 @@
           </v-toolbar-items>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-if="this.$store.state.user.username == null" small flat @click="move('/SignIn')" target="_blank">Sign In</v-btn>
+      <v-btn v-if="this.$store.state.user == null" small flat @click="move('/SignIn')" target="_blank">Sign In</v-btn>
       <span v-else @click="logout()">{{this.$store.state.user.username}}</span>
       <!--
       <v-flex v-else xs12 sm4>
@@ -108,7 +108,7 @@
     },
     logout() {
       localStorage.accessToken = '' 
-      this.$store.state.user=[]
+      this.$store.state.user=null
       this.$router.push('/') 
     }
   },
@@ -124,7 +124,7 @@
         this.$store.state.user = response.data
         this.$store.state.user = response.data
         
-        localStorage.id = this.this.$store.state.user._id
+        localStorage.id = this.$store.state.user._id
         })
         .catch(error => {
            
