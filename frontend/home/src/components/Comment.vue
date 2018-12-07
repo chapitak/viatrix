@@ -1,5 +1,5 @@
 <template>
-  <div class="Comment">
+  <div class="Comment" v-if="props_post_id">
     <v-divider dark></v-divider>
     <div id="read-comment">
         <v-list style="background:#fafafa">
@@ -9,15 +9,12 @@
             <v-list-tile
               :key="comment.index"
             <v-list-tile-content>
-                <v-list-tile-sub-title>{{comment.username}}</v-list-tile-sub-title>
-                <v-list-tile-title pa2>{{ comment.comment }}</v-list-tile-title>
+                <v-list-tile-sub-title>{{comment.user.username}}</v-list-tile-sub-title>
+                <v-list-tile-title pa2>{{ comment.content }}  </v-list-tile-title>
               <!--  <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
                 <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>-->
                 
             </v-list-tile-content>
-
-
-            
                 <!--<div
                 :key="comment.index"
             >   {{comment.comment}}
@@ -28,8 +25,8 @@
             ></v-divider>
             </template>
         </v-list>
-
     </div>
+    {{commentsdata}}
     <div id="write-comment">
         <!--<v-form v-model="valid">-->
         <v-form >
@@ -66,36 +63,65 @@
           comments: []
         }
     },
-    mounted() {
-        var self = this
-        this.$http({
-            url: 'http://54.180.32.24:1337/graphql',
-            method: 'post',
-            data: {
-                query: `
-                query {
-                    comments(where: {post_id: "`+self.props_post_id+`"}) {
-                        content,
-                        _id,
-                        post_id, 
-                        user {
-                        username
-                    },
-                    
-                    }
-                    } 
+    /*mounted() {
+        //var self = this
+        
+            this.$http({
+                url: 'http://54.180.32.24:1337/graphql',
+                method: 'post',
+                data: {
+                    query: `
+                    query {
+                        comments(where: {post_id: "`+this.props_post_id+`"}) { 
+                            content,
+                            _id,
+                            post_id, 
+                            user {
+                            username 
+                        },
+                        
+                        }
+                        } 
 
-                `
-            }
-            }).then((result) => {
+                    `
+                }
+                }).then((result) => { 
+                
+                this.comments = result.data.data.comments 
+                //this.comments.push({comment: result.data.comments[0], username: this.$store.state.user.username });
+                console.log(this.comments)
+                }); 
             
-            this.comments = result.data
-            //this.comments.push({comment: result.data.comments[0], username: this.$store.state.user.username });
-            console.log(this.comments)
-            });
+    },*/
+    computed: {
+        commentsdata: function () {
+                this.$http({
+                url: 'http://54.180.32.24:1337/graphql',
+                method: 'post',
+                data: {
+                    query: `
+                    query {
+                        comments(where: {post_id: "`+this.props_post_id+`"}) { 
+                            content,
+                            _id,
+                            post_id, 
+                            user {
+                            username 
+                        },
+                        
+                        }
+                        } 
 
+                    `
+                }
+                }).then((result) => { 
+                //this.commentsdatsa = result.data.data.comments 
+                this.comments = result.data.data.comments
+                console.log(this.comments)
+                }); 
+            return null
+        }
     },
-    
     methods: {
         sendComment() {
 
@@ -103,8 +129,8 @@
             post_id: this.props_post_id,
             register_id: this.$store.state.user._id,
             content: this.comment,
-            Post: this.props_post_id,
-            User: this.$store.state.user._id
+            post: this.props_post_id,
+            user: this.$store.state.user._id
         })
         .then(response => {
             // Handle success.
@@ -118,7 +144,7 @@
             console.log('An error occurred:', error);
         });
 
-        this.comments.push({comment: this.comment, username: this.$store.state.user.username });
+        this.comments.push({content: this.comment, user: {username: this.$store.state.user.username}});
         this.comment = '';
 
         }
