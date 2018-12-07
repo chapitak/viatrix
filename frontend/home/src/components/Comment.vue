@@ -1,26 +1,23 @@
 <template>
   <div class="Comment" v-if="props_post_id">
-    <v-divider dark></v-divider>
+    
     <div id="read-comment">
         <v-list style="background:#fafafa">
             <template
             v-for="(comment, index) in comments"
                 >
             <v-list-tile
-              :key="comment.index"
+              :key="comment.index">
             <v-list-tile-content>
                 <v-list-tile-sub-title>{{comment.user.username}}</v-list-tile-sub-title>
-                <v-list-tile-title pa2>{{ comment.content }}  </v-list-tile-title>
-              <!--  <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
-                <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>-->
-                
+                <v-list-tile-title pa2>{{ comment.content }}  </v-list-tile-title>       
             </v-list-tile-content>
                 <!--<div
                 :key="comment.index"
             >   {{comment.comment}}
                 </div>-->
             </v-list-tile>
-            <v-divider
+            <v-divider :key="comment.index"
                 v-if="index+1 < comments.length"
             ></v-divider>
             </template>
