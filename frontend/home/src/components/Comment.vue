@@ -7,10 +7,18 @@
             v-for="(comment, index) in comments"
                 >
             <v-list-tile
+              
               :key="comment.index">
             <v-list-tile-content>
                 <v-list-tile-sub-title>{{comment.user.username}}</v-list-tile-sub-title>
-                <v-list-tile-title pa2>{{ comment.content }}  </v-list-tile-title>       
+                <div style="width:100%" pa2>{{ comment.content }} 
+                
+                    <v-icon @click="deleteComment(comment._id)" small color="red" style="float:right"
+                    v-if="$store.state.user._id == comment.user._id"
+                    >close</v-icon>  
+                </div>      
+                
+                
             </v-list-tile-content>
                 <!--<div
                 :key="comment.index"
@@ -60,36 +68,7 @@
           comments: []
         }
     },
-    /*mounted() {
-        //var self = this
-        
-            this.$http({
-                url: 'http://54.180.32.24:1337/graphql',
-                method: 'post',
-                data: {
-                    query: `
-                    query {
-                        comments(where: {post_id: "`+this.props_post_id+`"}) { 
-                            content,
-                            _id,
-                            post_id, 
-                            user {
-                            username 
-                        },
-                        
-                        }
-                        } 
-
-                    `
-                }
-                }).then((result) => { 
-                
-                this.comments = result.data.data.comments 
-                //this.comments.push({comment: result.data.comments[0], username: this.$store.state.user.username });
-                console.log(this.comments)
-                }); 
-            
-    },*/
+    
     watch: {
         props_post_id: function () {
                 this.$http({
@@ -103,7 +82,8 @@
                             _id,
                             post_id, 
                             user {
-                            username 
+                            username,
+                            _id
                         },
                         
                         }
@@ -141,9 +121,31 @@
             console.log('An error occurred:', error);
         });
 
-        this.comments.push({content: this.comment, user: {username: this.$store.state.user.username}});
+        this.comments.push({content: this.comment, user: {username: this.$store.state.user.username, _id: this.$store.state.user._id}});
         this.comment = '';
 
+        },
+        deleteComment(cid) {
+            console.log(cid)
+            var r = confirm("정말 삭제하시곘습니까?")
+            if(r==true) {
+                this.$http.delete(`http://jeongkyo.kim:1337/comments/` + cid)
+                .then/*(response => {
+                    // Handle success.
+                    console.log(
+                    'Well done, your post has been successfully updated: ',
+                    response.data
+                    );
+                
+
+                })
+                .catch(error => {
+                    // Handle error.
+                    console.log('An error occurred:', error);
+                });*/
+                const idx = this.comments.findIndex(function(item) {return item._id === cid}) // findIndex = find + indexOf 
+                    if (idx > -1) this.comments.splice(idx, 1)
+            } 
         }
     }
   }
@@ -151,7 +153,7 @@
 
 </script>
 
-<style  scoped>
+<style scoped>
 .Comment {
     box-sizing: border-box;
     min-width: 200px;
@@ -165,4 +167,12 @@
         padding: 15px;
     }
 }
+
+</style>
+
+<style>
+.Comment .v-list__tile {
+    height: auto;
+}
+
 </style>
