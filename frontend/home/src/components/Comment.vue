@@ -23,7 +23,7 @@
             </template>
         </v-list>
     </div>
-    {{commentsdata}}
+    
     <div id="write-comment">
         <!--<v-form v-model="valid">-->
         <v-form >
@@ -90,8 +90,8 @@
                 }); 
             
     },*/
-    computed: {
-        commentsdata: function () {
+    watch: {
+        props_post_id: function () {
                 this.$http({
                 url: 'http://54.180.32.24:1337/graphql',
                 method: 'post',
