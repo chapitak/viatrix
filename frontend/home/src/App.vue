@@ -122,9 +122,9 @@
         .then(response => {
           // JSON responses are automatically parsed.
         this.$store.state.user = response.data
-        this.$store.state.user = response.data
         
-        localStorage.id = this.$store.state.user._id
+        
+        //localStorage.id = this.$store.state.user._id
         })
         .catch(error => {
            
@@ -134,7 +134,7 @@
       }
     else {
       
-      localStorage.id = null
+      //localStorage.id = null
       this.$store.state.user = null
     }
   }

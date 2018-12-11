@@ -8,7 +8,7 @@ import DBBlogPost from './components/DBBlogPost.vue'
 import EditPost from './components/EditPost.vue'
 import SignIn from './components/SignIn.vue'
 import SignInProcess from './components/SignInProcess.vue'
-
+import MyPage from './components/MyPage.vue'
 
 Vue.use(Router)
 
@@ -53,6 +53,11 @@ export default new Router({
       path: '/SignInProcess',
       name: 'SignInProcess',
       component: SignInProcess
+    },
+    {
+      path: '/MyPage',
+      name: 'MyPage',
+      component: MyPage
     }
   ]
 })

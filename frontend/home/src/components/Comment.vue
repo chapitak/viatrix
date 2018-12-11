@@ -6,8 +6,9 @@
             <template
             v-for="(comment, index) in comments"
                 >
+            <!-- 정보가 있는 사용자 -->    
             <v-list-tile
-              
+              v-if="comment.user != null"
               :key="comment.index">
             <v-list-tile-content>
                 <v-list-tile-sub-title>{{comment.user.username}}</v-list-tile-sub-title>
@@ -17,14 +18,34 @@
                     v-if="$store.state.user._id == comment.user._id"
                     >close</v-icon>  
                 </div>      
-                
-                
             </v-list-tile-content>
                 <!--<div
                 :key="comment.index"
             >   {{comment.comment}}
                 </div>-->
             </v-list-tile>
+            <!-- 탈퇴한 사용자 -->    
+            <v-list-tile
+              v-else
+              :key="comment.index">
+            <v-list-tile-content>
+                <v-list-tile-sub-title>*탈퇴한 사용자*</v-list-tile-sub-title>
+                <div style="width:100%" pa2>{{ comment.content }} 
+                
+                </div>      
+            </v-list-tile-content>
+                <!--<div
+                :key="comment.index"
+            >   {{comment.comment}}
+                </div>-->
+            </v-list-tile>
+
+
+
+
+
+
+
             <v-divider :key="comment.index"
                 v-if="index+1 < comments.length"
             ></v-divider>
@@ -94,7 +115,6 @@
                 }).then((result) => { 
                 //this.commentsdatsa = result.data.data.comments 
                 this.comments = result.data.data.comments
-                console.log(this.comments)
                 }); 
             return null
         }
