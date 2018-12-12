@@ -1,6 +1,7 @@
 <template>
   <div class="MyPage">
     <div id="app">
+        <h3>변경할 이름을 적어주세요</h3>
         <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
             v-model="username"
@@ -9,9 +10,7 @@
             label="UserName"
             required
         ></v-text-field>
-        <input type="hidden" value=storeName>
-        <input type="hidden" v-model="storeName">
-
+        
         <v-btn
             class="pa-0 ma-0"
             :disabled="!valid"
@@ -61,11 +60,18 @@ export default {
       }
     }
   },
-  watch: {
-     storeName() {
-       this.username = this.$store.state.user.username
-       return  this.$store.state.user.username
+  computed: {
+     vuexUserName: function() {
+         return this.$store.state.user.username
+       }
+        
      }
+  ,
+  watch: {
+    vuexUserName: function () {
+      this.username = this.$store.state.user.username 
+      return null
+    }
   }
 }
 
