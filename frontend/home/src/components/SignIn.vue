@@ -29,8 +29,10 @@ export default {
     }
     
   },
-  computed: {
-
+  mounted() {
+    if(localStorage.accessToken != null){
+        this.$router.push('/MyPage') 
+    }
   }
 }
 

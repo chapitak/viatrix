@@ -1,7 +1,7 @@
 <template>
   <div class="MyPage">
-    <div id="app">
-        <h3>변경할 이름을 적어주세요</h3>
+    <div id="app" v-if="this.$store.state.user.username">
+        <h3>변경할 이름을 적어주세요</h3><br>
         <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
             v-model="username"
@@ -10,6 +10,8 @@
             label="UserName"
             required
         ></v-text-field>
+       
+        {{vuexUserName=dummy}}
         
         <v-btn
             class="pa-0 ma-0"
@@ -27,15 +29,17 @@
 
 <script>
 
+
 export default {
     data() {
       return {
         valid: true,
-        username: '',
+        username: 'f',
+        rawdata: '',
         nameRules: [
           v => !!v || 'Name is required',
           v => (v && v.length <= 10) || 'Name must be less than 10 characters'
-        ],
+        ]
     }
   },
 
@@ -51,29 +55,45 @@ export default {
           console.log(
             'Well done, your post has been successfully updated: ',
             response.data
+            
           );
         })
         .catch(error => {
           // Handle error.
           console.log('An error occurred:', error);
         });
+       location.reload() 
       }
     }
   },
   computed: {
-     vuexUserName: function() {
-         return this.$store.state.user.username
-       }
-        
-     }
-  ,
-  watch: {
-    vuexUserName: function () {
-      this.username = this.$store.state.user.username 
-      return null
+    vuexUserName: {
+      get: function() {
+        return this.$store.state.user.username 
+      },
+  
+      set: function() {
+        this.rawdata = this.vuexUserName
+      }
+      
+      
     }
+  },
+  watch: {
+    rawdata: function() {
+      this.username = this.rawdata
+    } 
+    
   }
-}
+
+} 
+  /*computed: mapGetters({
+    vuexUserName : 'get'
+  })*/
+  
+
+
+
 
 
 </script>

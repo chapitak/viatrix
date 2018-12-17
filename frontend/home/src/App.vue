@@ -107,8 +107,9 @@
       this.$router.push(target)
     },
     logout() {
-      localStorage.accessToken = '' 
-      this.$store.state.user=null
+      localStorage.removeItem('accessToken')
+      localStorage.removeItem('user')
+      this.$store.state.user = null
       this.$router.push('/') 
     }
   },
