@@ -24,8 +24,8 @@ export default {
     
 
     login() {
-      this.loginWindow = window.open('http://54.180.32.24:1337/connect/google', '_blank', "width=500, height=500");
-     
+      //this.loginWindow = window.open('http://54.180.32.24:1337/connect/google', '_blank', "width=500, height=500");
+      location.href = "http://54.180.32.24:1337/connect/google"
     }
     
   },

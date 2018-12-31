@@ -1,6 +1,6 @@
 <template>
   <div class="SignInProcess">
-  {{registerUrl}}
+  {{accessToken}}
   </div>
 </template>
 
@@ -13,7 +13,7 @@
     data() {
       return {
           token: '',  // Add this line
-          registerUrl: '',
+          accessToken: '',
           response: ''
           
         }
@@ -24,14 +24,18 @@
     },
     mounted () {
       this.token=this.$route.fullPath
-      this.registerUrl = this.token.substring(14)
-      this.registerUrl = "http://jeongkyo.kim:1337/auth/google/callback" + this.registerUrl 
+      this.accessToken = this.token.substring(14)
+      this.accessToken = "http://jeongkyo.kim:1337/auth/google/callback" + this.accessToken 
       
+
+     this.$store.dispatch("AUTH_REQUEST", this.accessToken).then(() => {
+     //this.$router.push('/')
+     })
       //AJAX 를 활용한 http request
       
       
       /*const Http = new XMLHttpRequest();
-      const url= this.registerUrl;
+      const url= this.accessToken;
       Http.open("GET", url, false);
       Http.send();
       Http.onreadystatechange=(e)=>{
@@ -40,8 +44,8 @@
       localStorage.accessToken = this.response.jwt
       }*/
   
-  
-      const url= this.registerUrl;
+      /*
+      const url= this.accessToken;
       var req = new XMLHttpRequest();
       req.open('GET', url, false);
       req.send(null);
@@ -55,7 +59,7 @@
 
        opener.location.reload()
        self.close()
-
+      */
       
 
 
