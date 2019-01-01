@@ -50,8 +50,8 @@
           </v-toolbar-items>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-if="this.$store.state.user == null" small flat @click="move('/SignIn')" target="_blank">Sign In</v-btn>
-      <span v-else @click="logout()">{{this.$store.state.user.username}}</span>
+      <v-btn v-if="!profile.username" small flat @click="move('/SignIn')" target="_blank">Sign In</v-btn>
+      <span v-else @click="logout()">{{profile.username}}</span>
       <!--
       <v-flex v-else xs12 sm4>
           <v-overflow-btn
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-
+  import { mapState } from 'vuex'
 
   export default {
   name: 'app',
@@ -107,15 +107,16 @@
       this.$router.push(target)
     },
     logout() {
-      localStorage.removeItem('accessToken')
-      localStorage.removeItem('user')
-      this.$store.state.user = null
-      this.$router.push('/') 
+      this.$store.dispatch("AUTH_LOGOUT")
+      .then(() => {
+        this.$router.push('/login')
+      })
     }
   },
   props: {
     source: String
   },
+  computed: mapState({profile: state => state.profile}),
   mounted() {
     if(localStorage.accessToken != null)
       {

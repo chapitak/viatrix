@@ -37,8 +37,9 @@ export default new Vuex.Store({
       state.status = 'error'
     },
     AUTH_LOGOUT (state) {
+      state.status = ''
       state.profile = {}
-      state.jwt = ''
+      state.token = ''
     }
   },
   actions: {
@@ -49,7 +50,7 @@ export default new Vuex.Store({
           .then(resp => {
             const token = resp.data.jwt
             localStorage.setItem('user-token', token) // store the token in localstorage
-            axios.defaults.headers.common['Authorization'] = token
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
             commit("AUTH_SUCCESS", resp.data)
             // you have your token, now log in your user :)
             dispatch("USER_REQUEST")
