@@ -8,7 +8,8 @@ const productionPlugins = [
     // INJECT_POSITION
     routes: [
   "/",
-  "/blog"
+  "/blog",
+  "/about"
 ],
     /*renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
       renderAfterElementExists: '#app'
