@@ -9,7 +9,8 @@ const productionPlugins = [
     routes: [
   "/",
   "/blog",
-  "/about"
+  "/DBBlog",
+  "/DBBlog/5c008260bd374723094ae464",
 ],
     /*renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
       renderAfterElementExists: '#app'
