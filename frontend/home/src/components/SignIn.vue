@@ -31,7 +31,7 @@ export default {
   },
   mounted() {
     if(localStorage.accessToken != null){
-        this.$router.push('/MyPage') 
+       // this.$router.push('/MyPage') 
     }
   }
 }

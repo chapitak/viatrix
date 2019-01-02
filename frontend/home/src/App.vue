@@ -131,7 +131,7 @@
         .catch(error => {
            
           console.log('An error occurred:', error);
-          this.$router.push('/SignIn') 
+          //this.$router.push('/SignIn') 
         })  
       }
     else {

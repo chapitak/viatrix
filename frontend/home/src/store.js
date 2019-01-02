@@ -43,7 +43,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-   AUTH_REQUEST ({ commit, dispatch }, authUrl) {
+   AUTH_REQUEST ({ commit }, authUrl) {
       return new Promise((resolve, reject) => { // The Promise used for router redirect in login
         commit("AUTH_REQUEST")
         axios({url: authUrl, method: 'GET' })
@@ -53,7 +53,7 @@ export default new Vuex.Store({
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
             commit("AUTH_SUCCESS", resp.data)
             // you have your token, now log in your user :)
-            dispatch("USER_REQUEST")
+            //dispatch("USER_REQUEST")
             resolve(resp)
           })
           .catch(err => {
