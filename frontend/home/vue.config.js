@@ -2,6 +2,9 @@
 const path = require('path');
 const PrerenderSpaPlugin = require('prerender-spa-plugin');
 
+
+
+
 const productionPlugins = [
   new PrerenderSpaPlugin({
     staticDir: path.join(__dirname, 'dist'),
@@ -9,8 +12,7 @@ const productionPlugins = [
     routes: [
   "/",
   "/blog",
-  "/DBBlog",
-  "/DBBlog/5c008260bd374723094ae464",
+  "/about"
 ],
     /*renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
       renderAfterElementExists: '#app'
