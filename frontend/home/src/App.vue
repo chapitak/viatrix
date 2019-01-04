@@ -109,7 +109,7 @@
     logout() {
       this.$store.dispatch("AUTH_LOGOUT")
       .then(() => {
-        this.$router.push('/login')
+        this.$router.push('/')
       })
     }
   },
@@ -118,7 +118,7 @@
   },
   computed: mapState({profile: state => state.profile}),
   mounted() {
-    if(localStorage.accessToken != null)
+   /* if(localStorage.accessToken != null)
       {
         this.$http.get(`http://54.180.32.24:1337/users/me`)
         .then(response => {
@@ -138,7 +138,7 @@
       
       //localStorage.id = null
       this.$store.state.user = null
-    }
+    }*/
   }
 }
 </script>

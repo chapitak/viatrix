@@ -15,7 +15,7 @@
                 <div style="width:100%" pa2>{{ comment.content }} 
                 
                     <v-icon @click="deleteComment(comment._id)" small color="red" style="float:right"
-                    v-if="$store.state.user._id == comment.user._id"
+                    v-if="$store.state.profile._id == comment.user._id"
                     >close</v-icon>  
                 </div>      
             </v-list-tile-content>
@@ -124,10 +124,10 @@
 
         this.$http.post(`http://jeongkyo.kim:1337/comments/`, {
             post_id: this.props_post_id,
-            register_id: this.$store.state.user._id,
+            register_id: this.$store.state.profile._id,
             content: this.comment,
             post: this.props_post_id,
-            user: this.$store.state.user._id
+            user: this.$store.state.profile._id
         })
         .then(response => {
             // Handle success.
@@ -141,7 +141,7 @@
             console.log('An error occurred:', error);
         });
 
-        this.comments.push({content: this.comment, user: {username: this.$store.state.user.username, _id: this.$store.state.user._id}});
+        this.comments.push({content: this.comment, user: {username: this.$store.state.profile.username, _id: this.$store.state.profile._id}});
         this.comment = '';
 
         },
