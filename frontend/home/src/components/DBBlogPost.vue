@@ -10,7 +10,6 @@
 
       
     </div>
-    <Comment :props_post_id="post.id"/>
   </div>
 
 </template>
@@ -19,12 +18,10 @@
 
 <script>
 import MarkDownIt from 'markdown-it'
-import Comment from './Comment.vue'
 
 export default {
   name: 'DBBlogPost',
   components: {
-    Comment
   },
   data() {
     return {

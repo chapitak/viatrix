@@ -50,8 +50,6 @@
           </v-toolbar-items>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-if="!profile.username" small flat @click="move('/SignIn')" target="_blank">Sign In</v-btn>
-      <span v-else @click="logout()">{{profile.username}}</span>
       <!--
       <v-flex v-else xs12 sm4>
           <v-overflow-btn
@@ -85,7 +83,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
 
   export default {
   name: 'app',
@@ -94,51 +91,15 @@
     drawer: null,
     drawerRight: false,
     right: false,
-    left: false,
-    dropdown_user: [
-        { text: 'Sign Out', callback: () => 
-        //localStorage.accessToken = null 
-        this.$router.push('/') 
-        }
-      ],
+    left: false
   }),
   methods: {
     move: function(target) {
       this.$router.push(target)
-    },
-    logout() {
-      this.$store.dispatch("AUTH_LOGOUT")
-      .then(() => {
-        this.$router.push('/')
-      })
     }
   },
   props: {
     source: String
-  },
-  computed: mapState({profile: state => state.profile}),
-  mounted() {
-   /* if(localStorage.accessToken != null)
-      {
-        this.$http.get(`http://54.180.32.24:1337/users/me`)
-        .then(response => {
-          // JSON responses are automatically parsed.
-        this.$store.state.user = response.data
-        
-        
-        //localStorage.id = this.$store.state.user._id
-        })
-        .catch(error => {
-           
-          console.log('An error occurred:', error);
-          //this.$router.push('/SignIn') 
-        })  
-      }
-    else {
-      
-      //localStorage.id = null
-      this.$store.state.user = null
-    }*/
   }
 }
 </script>
