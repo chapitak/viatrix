@@ -1,10 +1,17 @@
 <template>
-  <div class="blogpost">
-  
-    <div  class="markdown-body" v-html = "article">
+  <div class="dbblogpost">
     
+    <div class="markdown-body" >
+      <h1>{{post.title}}</h1>
+      <span style="float:right">{{ String(post.createdAt).substring(0,10) }}</span>
+      <div v-html = "post.text">
+      </div>
+      
+
+      
     </div>
   </div>
+
 </template>
 
 
@@ -13,45 +20,38 @@
 import MarkDownIt from 'markdown-it'
 
 export default {
-  name: 'BlogPost',
+  name: 'DBBlogPost',
+  components: {
+  },
   data() {
     return {
-      year: this.$route.params.year,
-      month: this.$route.params.month,
-      day: this.$route.params.day,
-      title: this.$route.params.title,
-      article: "",   // will contain contents' html. 
+      post: [],
+      errors: []
     }
   },
-  mounted() {
-    var htmlDocUri = 
-        '/blog_contents/'
-        + this.year + '/'
-        + this.month + '/'  
-        + this.day + '/'
-        + this.title + '.html'
 
+  // Fetches posts when the component is created.
+  created() {
 
-    
-    this.$http.get(htmlDocUri)
+    this.$http.get(`http://54.180.32.24:1337/posts/`+this.$route.params.postid, )
     .then(response => {
       // JSON responses are automatically parsed.
-     //this.article = response.data
+     this.post = response.data
 
-     var md = MarkDownIt({
-    html: true}) 
-     this.article = md.render(response.data)    
+     var md = MarkDownIt()
+     this.post.text = md.render(response.data.text)      
     })
     .catch(e => {
-      window.location.href = "/404";
+      this.errors.push(e)
     })               
     
   }
 }
+
 </script>
 
-<style scoped>
-  @import "../assets/markdown.css";
+<style  scoped>
+@import "../assets/markdown.css";
 	.markdown-body {
 		box-sizing: border-box;
 		min-width: 200px;
@@ -67,3 +67,4 @@ export default {
 	}
 
 </style>
+

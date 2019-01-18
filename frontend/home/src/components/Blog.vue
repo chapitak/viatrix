@@ -1,61 +1,100 @@
 <template>
   <div class="blog">
-    <h1 class="text-xs-center">Blog Page</h1>
+    <h1 class="text-xs-center">Blog</h1>
+
+  
+
+
+      <!-- 카드 디자인-->
       <v-container>
        <v-layout row>
         <v-flex xs12 >
         <v-card>
           <v-list two-line>
           <template
-           v-for="i in index" 
+           v-for="(post, index) in posts"
              >
                    <v-list-tile
-              :key="i.path"
+              :key="post.index"
               avatar
               ripple
-              @click="move(i.path)"
+              @click="move(post.id)"
             >
               <v-list-tile-content>
-                <v-list-tile-title pa2>{{ i.title }}</v-list-tile-title>
+                <v-list-tile-title pa2>{{ post.title }}</v-list-tile-title>
               <!--  <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
                 <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>-->
-                <v-list-tile-sub-title class="text-xs-right">{{ i.date.year }} / {{ i.date.month }} / {{ i.date.day }}</v-list-tile-sub-title>
+                <v-list-tile-sub-title class="text-xs-right">{{ post.createdAt.substring(0,10) }}</v-list-tile-sub-title>
               </v-list-tile-content>
 
             </v-list-tile>
             <v-divider
               
-              v-if="i.relativeId + 1 < index.length"
+              v-if="index + 1 < posts.length"
             ></v-divider>
-            </template>
-          </v-list>
+          </template>
+        </v-list>
         </v-card>
         </v-flex>
-      </v-layout>
-      </v-container>
-    </div>
+    </v-layout>
+</v-container>
+
+
+</div>
 </template>
 
 
 
 <script>
+
+
 export default {
   name: 'Blog',
   data() {
     return {
-      // INJECT_POSITION DO NOT MODIFY THIS LINE!
-      // The first json array after this line is
-      // the position of injecting index json. index MUST have an array.
-      index :  [{"relativeId":0,"title":"aAblogvuejs-3-npm-vue-cli.html","path":"/blog/2018/11/30/aAblogvuejs-3-npm-vue-cli/","date":{"year":"2018","month":"11","monthEng":"November","day":"30","dayEng":"30th"}},{"relativeId":1,"title":"[Blog/VueJS] 2. 개발환경 세팅","path":"/blog/2018/11/29/[TEST] 공백/","date":{"year":"2018","month":"11","monthEng":"November","day":"29","dayEng":"29th"}}],
-    } 
+      posts: [],
+      errors: []
+    }
+      
   },
   methods: {
-  move: function(target) {
-    this.$router.push(target)
-    },
+    move: function(target) {
+      this.$router.push({name: 'Blogpost', params:{postid:target}})
+    }
   },
-}
-</script>
 
+  // Fetches posts when the component is created.
+  created() {
+    this.$http.get(`http://54.180.32.24:1337/posts`, {
+    params: {
+      _sort: 'createdAt:desc' // Generates http://localhost:1337/posts?_sort=createdAt:desc
+    }
+  })
+    .then(response => {
+      // JSON responses are automatically parsed.
+      
+      this.posts = response.data
+      
+      
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
+
+    // async / await version (created() becomes async created())
+    //
+    // try {
+    //   const response = await axios.get(`http://jsonplaceholder.typicode.com/posts`)
+    //   this.posts = response.data
+    // } catch (e) {
+    //   this.errors.push(e)
+    // }
+  }
+  
+}
+
+
+
+</script>
 <style scoped>
 </style>

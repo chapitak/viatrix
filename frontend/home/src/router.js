@@ -3,8 +3,6 @@ import Router from 'vue-router'
 import About from './components/About.vue'
 import Blog from './components/Blog.vue'
 import BlogPost from './components/BlogPost.vue'
-import DBBlog from './components/DBBlog.vue'
-import DBBlogPost from './components/DBBlogPost.vue'
 import EditPost from './components/EditPost.vue'
 
 Vue.use(Router)
@@ -18,24 +16,14 @@ export default new Router({
       component: About
     },
     {
-      path: '/blog',
-      name: 'blog',
+      path: '/Blog',
+      name: 'Blog',
       component: Blog
     },
     {
-      path: '/Blog/:year/:month/:day/:title',
-      name: 'blogpost',
+      path: '/Blog/:postid',
+      name: 'Blogpost',
       component: BlogPost
-    },
-    {
-      path: '/DBBlog',
-      name: 'DBBlog',
-      component: DBBlog
-    },
-    {
-      path: '/DBBlog/:postid',
-      name: 'DBBlogpost',
-      component: DBBlogPost
     },
     {
       path: '/EditPost',
