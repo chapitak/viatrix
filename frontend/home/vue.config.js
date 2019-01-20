@@ -14,7 +14,7 @@ const productionPlugins = [
   "/blog",
   "/about",
   //__INJECTION_START__
-  "/DBBlog/5bed2b4693f3cd542cda23ab","/DBBlog/5bee1ad493f3cd542cda23ad","/DBBlog/5befcfe193f3cd542cda23af","/DBBlog/5c008260bd374723094ae464","/DBBlog/5c2efc876f72d328096a99ba"
+  "/Blog/5bed2b4693f3cd542cda23ab"
 //__INJECTION_END__
 ],
     /*renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
