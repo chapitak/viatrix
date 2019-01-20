@@ -29,7 +29,6 @@
 
             </v-list-tile>
             <v-divider
-              
               v-if="index + 1 < posts.length"
             ></v-divider>
           </template>
@@ -65,7 +64,7 @@ export default {
 
   // Fetches posts when the component is created.
   created() {
-    this.$http.get(`http://54.180.32.24:1337/posts`, {
+    this.$http.get(`http://54.180.32.24:1337/posts?Category=blog`, {
     params: {
       _sort: 'createdAt:desc' // Generates http://localhost:1337/posts?_sort=createdAt:desc
     }
