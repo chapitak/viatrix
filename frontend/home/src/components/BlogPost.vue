@@ -81,7 +81,7 @@ export default {
       this.errors.push(e)
     })  
 
-    this.initDisqus('jeongkyo', this.$route.params.postid, this.post.title, 'http://jeongkyo.kim'+this.$route.path)
+    this.initDisqus('jeongkyo-kim-1', this.$route.params.postid, this.post.title, 'http://jeongkyo.kim'+this.$route.path)
      
     
   }
