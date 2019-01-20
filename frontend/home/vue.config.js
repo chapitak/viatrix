@@ -14,7 +14,7 @@ const productionPlugins = [
   "/blog",
   "/about",
   //__INJECTION_START__
-  "/Blog/5bed2b4693f3cd542cda23ab"
+  "/blog/5bed2b4693f3cd542cda23ab"
 //__INJECTION_END__
 ],
     /*renderer: new PrerenderSpaPlugin.PuppeteerRenderer({

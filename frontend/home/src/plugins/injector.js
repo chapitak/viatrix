@@ -33,7 +33,7 @@ getPosts().then(data => {
   ids = data.data.posts
   var idArray = []
   for(var i in ids){
-    idArray.push("\"/Blog/" + ids[i]._id + "\"")
+    idArray.push("\"/blog/" + ids[i]._id + "\"")
   }
   var blogPostsRoutes = idArray.join(',')
 

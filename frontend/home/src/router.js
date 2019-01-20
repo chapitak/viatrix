@@ -16,12 +16,12 @@ export default new Router({
       component: About
     },
     {
-      path: '/Blog',
+      path: '/blog',
       name: 'Blog',
       component: Blog
     },
     {
-      path: '/Blog/:postid',
+      path: '/blog/:postid',
       name: 'Blogpost',
       component: BlogPost
     },
