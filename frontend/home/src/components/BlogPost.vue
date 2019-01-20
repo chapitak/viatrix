@@ -6,11 +6,11 @@
       <span style="float:right">{{ String(post.createdAt).substring(0,10) }}</span>
       <div v-html = "post.text">
       </div>
-      
+      <div id="disqus_thread"></div>
 
       
-    </div>{{this.$route.path}}
-    <div id="disqus_thread"></div>
+    </div>
+    
   </div>
 
 </template>
