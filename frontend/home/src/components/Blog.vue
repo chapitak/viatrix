@@ -53,8 +53,7 @@ export default {
     return {
       posts: [],
       errors: []
-    }
-      
+    }  
   },
   methods: {
     move: function(target) {
