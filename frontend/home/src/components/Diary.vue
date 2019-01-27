@@ -28,7 +28,7 @@
         </template>
 
         </v-timeline>
-        <DiaryContent :props_post_id="selected_post_id"/>
+        <DiaryContent :props_post_id="this.selected_post_id"/>
     </v-container>
   </div>
 </template>
@@ -41,9 +41,10 @@ import DiaryContent from './DiaryContent.vue'
     components: {
       DiaryContent
   },
-   DiaryContent() {
-        return {
-      posts: []
+   data() {
+        return {  
+      posts: [],
+      selected_post_id: ''
       }
     },
     mounted() {
@@ -56,6 +57,9 @@ import DiaryContent from './DiaryContent.vue'
         // JSON responses are automatically parsed.
         
         this.posts = response.data
+        
+        //테스트
+        this.selected_post_id = '5c4ab20c87a335331e24a81d'
         
         
         })

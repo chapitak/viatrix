@@ -4,7 +4,7 @@
     <div>
       
       <span style="float:right">{{ String(post.createdAt).substring(0,10) }}</span>
-      {{post.text}}
+      <span style="white-space: pre-line;">{{post.text}}</span>
       <div id="disqus_thread"></div>
 
       
@@ -19,6 +19,7 @@
 <script>
 export default {
   name: 'DiaryContent',
+  props: ['props_post_id'],
   components: {
   },
   data() {
@@ -66,7 +67,7 @@ export default {
   // Fetches posts when the component is created.
   mounted() {
 
-    this.$http.get(`http://54.180.32.24:1337/posts/`+this.props_post_idd, )
+    this.$http.get(`http://54.180.32.24:1337/posts/`+this.props_post_id)
     .then(response => {
       // JSON responses are automatically parsed.
      this.post = response.data
