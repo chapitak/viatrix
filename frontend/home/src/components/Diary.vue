@@ -13,11 +13,9 @@
           small
           style="min-width:200px"
         >
-        <b>{{ post.createdAt.substring(0,10) }}</b>
-        <br>
-        <br>
+        
           <v-layout justify-space-between>
-            
+            <span><b class="ma-12">{{ post.createdAt.substring(0,10) }}</b></span>    
             <v-flex>
             <span style="white-space: pre-line;">
               <!--{{ post.text }}-->
@@ -30,14 +28,20 @@
         </template>
 
         </v-timeline>
+        <DiaryContent :props_post_id="selected_post_id"/>
     </v-container>
   </div>
 </template>
 
 <script>
+import DiaryContent from './DiaryContent.vue'
+
   export default {
     name: 'Diary',
-    data() {
+    components: {
+      DiaryContent
+  },
+   DiaryContent() {
         return {
       posts: []
       }
@@ -63,3 +67,9 @@
     }
   }
 </script>
+
+<style>
+.v-timeline--align-top .v-timeline-item__dot--small {
+  top: 0px;
+}
+</style>
