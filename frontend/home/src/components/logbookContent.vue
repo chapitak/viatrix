@@ -1,44 +1,25 @@
 <template>
-<<<<<<< HEAD
-  <div class="DiaryContent">
+  <div class="LogbookContent" v-if="props_post_id">
     
-      <h1>{{post.title}}</h1>
-      <span style="float:right">{{ String(post.createdAt).substring(0,10) }}</span>
+      
+      
       <span style="white-space: pre-line;">
-            
               {{ post.text }}
       </span>
-=======
-  <div class="diaryContent">
-    
-    <div>
-      
-      <span style="float:right">{{ String(post.createdAt).substring(0,10) }}</span>
-      <span style="white-space: pre-line;">{{post.text}}</span>
->>>>>>> 2f55c2b3c2175b603a5b14671922efc96b7d355a
       <div id="disqus_thread"></div>
 
       
     </div>
     
-<<<<<<< HEAD
-=======
-  </div>
->>>>>>> 2f55c2b3c2175b603a5b14671922efc96b7d355a
 
 </template>
 
 
 
 <script>
-<<<<<<< HEAD
 
 export default {
-  name: 'diaryContent',
-=======
-export default {
-  name: 'DiaryContent',
->>>>>>> 2f55c2b3c2175b603a5b14671922efc96b7d355a
+  name: 'logbookContent',
   props: ['props_post_id'],
   components: {
   },
@@ -85,33 +66,26 @@ export default {
   },
 
   // Fetches posts when the component is created.
-<<<<<<< HEAD
-  /*mounted() {
+  mounted() {
 
     this.$http.get(`http://54.180.32.24:1337/posts/`+ this.props_post_id, )
     .then(response => {
       // JSON responses are automatically parsed.
      this.post = response.data
-=======
-  mounted() {
+     
 
-    this.$http.get(`http://54.180.32.24:1337/posts/`+this.props_post_id)
-    .then(response => {
-      // JSON responses are automatically parsed.
-     this.post = response.data
 
->>>>>>> 2f55c2b3c2175b603a5b14671922efc96b7d355a
+     this.initDisqus('jeongkyo-kim-1', this.post.id, this.post.id, 'http://jeongkyo.kim'+this.$route.path+ '/' +this.post.id)
     })
     .catch(e => {
       this.errors.push(e)
     })  
 
-<<<<<<< HEAD
-    this.initDisqus('jeongkyo-kim-1', this.$route.params.postid, this.post.title, 'http://jeongkyo.kim'+this.$route.path)
+    
      
     
-  },*/
-  watch: {
+  }
+  /*watch: {
     props_post_id: function() {
       this.$http.get(`http://54.180.32.24:1337/posts/`+ this.props_post_id, )
       .then(response => {
@@ -124,20 +98,11 @@ export default {
 
       this.initDisqus('jeongkyo-kim-1', this.props_post_id, this.post.title, 'http://jeongkyo.kim'+this.$route.path)
     }
-=======
-    this.initDisqus('jeongkyo-kim-1', this.props_post_idd, this.post.title, 'http://jeongkyo.kim'+this.$route.path)
-     
-    
->>>>>>> 2f55c2b3c2175b603a5b14671922efc96b7d355a
-  }
+  }*/
 }
 
 </script>
 
 <style  scoped>
-<<<<<<< HEAD
-
-=======
->>>>>>> 2f55c2b3c2175b603a5b14671922efc96b7d355a
 </style>
 

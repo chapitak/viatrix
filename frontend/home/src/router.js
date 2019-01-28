@@ -4,8 +4,8 @@ import About from './components/About.vue'
 import Blog from './components/Blog.vue'
 import BlogPost from './components/BlogPost.vue'
 import EditPost from './components/EditPost.vue'
-import Diary from './components/Diary.vue'
-import DiaryContent from './components/DiaryContent.vue'
+import logbook from './components/logbook.vue'
+import logbookContent from './components/logbookContent.vue'
 
 Vue.use(Router)
 
@@ -33,14 +33,14 @@ export default new Router({
       component: EditPost
     },
     {
-      path: '/Diary',
-      name: 'Diary',
-      component: Diary
+      path: '/logbook',
+      name: 'logbook',
+      component: logbook
     },
     {
-      path: '/DiaryContent',
-      name: 'DiaryContent',
-      component: DiaryContent
+      path: '/logbook',
+      name: 'logbookContent',
+      component: logbookContent
     }
   ]
 })
