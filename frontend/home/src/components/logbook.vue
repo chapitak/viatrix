@@ -13,7 +13,7 @@
             small
             style="min-width:200px"
           >
-          <span @click="open(post.id)" style="cursor: pointer;"><b>{{ post.createdAt.substring(0,10) }}</b></span>
+          <span @click="open(post.id)" style="cursor: pointer;"><b>{{ post.title}}</b></span>
             <v-layout justify-space-between>
               
               <v-flex>

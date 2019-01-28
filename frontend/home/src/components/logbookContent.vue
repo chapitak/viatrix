@@ -75,7 +75,7 @@ export default {
      
 
 
-     this.initDisqus('jeongkyo-kim-1', this.post.id, this.post.id, 'http://jeongkyo.kim'+this.$route.path+ '/' +this.post.id)
+     this.initDisqus('jeongkyo-kim-1', this.post.id, this.post.title, 'http://jeongkyo.kim'+this.$route.path+ '/' +this.post.id)
     })
     .catch(e => {
       this.errors.push(e)
