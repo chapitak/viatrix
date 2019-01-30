@@ -6,6 +6,7 @@ import BlogPost from './components/BlogPost.vue'
 import EditPost from './components/EditPost.vue'
 import logbook from './components/logbook.vue'
 import logbookContent from './components/logbookContent.vue'
+import PageNotFound from './components/PageNotFound.vue'
 
 Vue.use(Router)
 
@@ -41,6 +42,11 @@ export default new Router({
       path: '/logbook',
       name: 'logbookContent',
       component: logbookContent
+    },
+    {
+      path: '*',
+      name: 'PageNotFound',
+      component: PageNotFound
     }
   ]
 })
