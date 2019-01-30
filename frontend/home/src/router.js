@@ -44,9 +44,13 @@ export default new Router({
       component: logbookContent
     },
     {
-      path: '*',
+      path: "/404",
       name: 'PageNotFound',
       component: PageNotFound
+    },
+    {
+      path: "*",
+      redirect: "/404"
     }
   ]
 })
