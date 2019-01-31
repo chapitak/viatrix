@@ -13,6 +13,7 @@ const productionPlugins = [
   "/",
   "/blog",
   "/about",
+  "/404",
   //__INJECTION_START__
   "/blog/5bed2b4693f3cd542cda23ab","/blog/5c4ee7a872ab3272707b70e4","/blog/5c5197c472ab3272707b70e6"
 //__INJECTION_END__
