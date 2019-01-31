@@ -6,7 +6,7 @@ import BlogPost from './components/BlogPost.vue'
 import EditPost from './components/EditPost.vue'
 import logbook from './components/logbook.vue'
 import logbookContent from './components/logbookContent.vue'
-import PageNotFound from './components/PageNotFound.vue'
+const PageNotFound = () => import('./components/PageNotFound.vue');
 
 Vue.use(Router)
 
