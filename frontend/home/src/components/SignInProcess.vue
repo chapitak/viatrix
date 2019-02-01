@@ -1,6 +1,6 @@
 <template>
   <div class="SignInProcess">
-  {{accessToken}}
+  
   </div>
 </template>
 
@@ -29,7 +29,9 @@
       
 
      this.$store.dispatch("AUTH_REQUEST", this.accessToken).then(() => {
-     //this.$router.push('/')
+     this.$router.push('/') 
+     //여긴 좀 문제가 있다. 원래 페이지로 리다이렉트 해주고싶은데... 
+
      })
       //AJAX 를 활용한 http request
       

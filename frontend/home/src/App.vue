@@ -118,27 +118,24 @@
   },
   computed: mapState({profile: state => state.profile}),
   mounted() {
-   /* if(localStorage.accessToken != null)
+    if(this.$store.state.token != null)
       {
-        this.$http.get(`http://54.180.32.24:1337/users/me`)
-        .then(response => {
-          // JSON responses are automatically parsed.
-        this.$store.state.user = response.data
-        
-        
-        //localStorage.id = this.$store.state.user._id
-        })
-        .catch(error => {
-           
-          console.log('An error occurred:', error);
-          //this.$router.push('/SignIn') 
-        })  
+        if(this.$store.getters.isAuthenticated)
+        {
+          this.$store.dispatch("AUTH_REQUEST", this.$store.state.token).then(() => {
+          
+          })
+        }
+        else
+        {
+          this.$store.dispatch("AUTH_LOGOUT")
+        }
       }
     else {
       
       //localStorage.id = null
-      this.$store.state.user = null
-    }*/
+      this.$store.state.profile = null
+    }
   }
 }
 </script>
