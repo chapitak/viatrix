@@ -13,7 +13,7 @@
     "es6-promise": "^4.2.5",
     "fs": "0.0.1-security",
     "github-markdown-css": "^2.10.0",
-    "highlight.js": "^9.13.1",
+    "highlight.js": "^10.1.2",
     "markdown-it": "^8.4.2",
     "marked": "^0.5.1",
     "request": "^2.88.0",
