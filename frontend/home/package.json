@@ -15,7 +15,7 @@
     "github-markdown-css": "^2.10.0",
     "highlight.js": "^9.13.1",
     "markdown-it": "^8.4.2",
-    "marked": "^0.5.1",
+    "marked": "^4.0.10",
     "request": "^2.88.0",
     "simplemde": "^1.11.2",
     "vue": "^2.5.17",
